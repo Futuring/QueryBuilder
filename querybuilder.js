@@ -76,12 +76,7 @@
         }
 
         pub.query = function () {
-            var call = {};
-            var group =  _.groupBy(query, function(item){return _.keys(item)[0]});
-
-            for(var key in group){
-                console.dir(_.pluck(group[key], key))
-            }
+            var call = {}, group = _.groupBy(query, function(item){return _.keys(item)[0]});
 
             for(var key in group){
                 var pluck = _.pluck(group[key], key).join(',');
