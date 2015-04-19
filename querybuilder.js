@@ -17,8 +17,7 @@
 }(this, function() {
     'use strict';
     function QueryBuilder() {
-        var pub = {};
-        this.query = [];
+        var pub = {}, query = [];
 
         function _whereSugar (type, field, value) {
             var condition = {};
