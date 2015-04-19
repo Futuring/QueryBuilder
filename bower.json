@@ -1,0 +1,20 @@
+{
+  "name": "QueryBuilder",
+  "main": "querybuilder.js",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Futuring/QueryBuilder",
+  "authors": [
+    "Jean lucas de Carvalho <jeanlucasdecarvalho@gmail.com>"
+  ],
+  "description": "Querystring builder for the Futuring API.",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "Querystring",
+    "Futuring"
+  ],
+  "license": "MIT"
+}
