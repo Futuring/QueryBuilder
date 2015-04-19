@@ -13,8 +13,11 @@
     "node"
   ],
   "keywords": [
-    "Querystring",
+    "querystring",
     "Futuring"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "~3.6.0"
+  }
 }
