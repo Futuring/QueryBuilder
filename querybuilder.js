@@ -75,15 +75,22 @@
             return this;
         }
 
-        pub.query = function () {
-            var call = {}, group = _.groupBy(query, function(item){return _.keys(item)[0]});
+        pub.query = function (str) {
+            var str = str || false, call = {}, group = _.groupBy(query, function(item){return _.keys(item)[0]});
 
             for(var key in group){
                 var pluck = _.pluck(group[key], key).join(',');
                 call[key] = key === 'where' ||  key === 'orderBy' ? '[' + pluck + ']' : pluck;
             }
 
-            return call;
+            if(!str) return call;
+            else {
+                var queryString = [];
+                for (var key in call){
+                    queryString.push(key + '=' + call[key]);
+                }
+                return '?' + queryString.join('&');
+            }
         }
 
         return pub;
