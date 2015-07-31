@@ -16,8 +16,5 @@
     "querystring",
     "Futuring"
   ],
-  "license": "MIT",
-  "dependencies": {
-    "lodash": "~3.6.0"
-  }
+  "license": "MIT"
 }
