@@ -35,16 +35,16 @@
             return this;
         }
 
-        pub.eq = _.bind(_whereSugar, this, 'eq');
-        pub.neq = _.bind(_whereSugar, this, 'neq');
-        pub.lt = _.bind(_whereSugar, this, 'lt');
-        pub.lte = _.bind(_whereSugar, this, 'lte');
-        pub.gt = _.bind(_whereSugar, this, 'gt');
-        pub.gte = _.bind(_whereSugar, this, 'gte');
-        pub.isNull = _.bind(_whereSugar, this, 'isNull');
-        pub.in = _.bind(_whereSugar, this, 'in');
-        pub.like = _.bind(_whereSugar, this, 'like');
-        pub.between = _.bind(_whereSugar, this, 'between');
+        pub.eq = _whereSugar.bind(this, 'eq');
+        pub.neq = _whereSugar.bind(this, 'neq');
+        pub.lt = _whereSugar.bind(this, 'lt');
+        pub.lte = _whereSugar.bind(this, 'lte');
+        pub.gt = _whereSugar.bind(this, 'gt');
+        pub.gte = _whereSugar.bind(this, 'gte');
+        pub.isNull = _whereSugar.bind(this, 'isNull');
+        pub.in = _whereSugar.bind(this, 'in');
+        pub.like = _whereSugar.bind(this, 'like');
+        pub.between = _whereSugar.bind(this, 'between');
 
         pub.orderBy = function () {
             var params = [];
@@ -76,11 +76,19 @@
         }
 
         pub.query = function (str) {
-            var str = str || false, call = {}, group = _.groupBy(query, function(item){return _.keys(item)[0]});
+            var str = str || false, call = {}, group = {};
+            for(var i = 0, l = query.length; i < l; i++){
+                for(var key in query[i]){
+                    if(group[key] === undefined){
+                      group[key] = [];
+                    }
+                    group[key].push(query[i][key]);
+                }
+            }
 
             for(var key in group){
-                var pluck = _.pluck(group[key], key).join(',');
-                call[key] = key === 'where' ||  key === 'orderBy' ? '[' + pluck + ']' : pluck;
+                var join = group[key].join(',');
+                call[key] = key === 'where' ||  key === 'orderBy' ? '[' + join + ']' : join;
             }
 
             if(!str) return call;
